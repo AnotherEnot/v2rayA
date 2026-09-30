@@ -224,12 +224,12 @@ jobs:
           $Installer_ARM64_url = "https://github.com/${{ github.repository }}/releases/download/v${{ steps.prep.outputs.VERSION }}/installer_windows_inno_arm64_${{ steps.prep.outputs.VERSION }}.exe"
           # update submits a version bump for the fork's own package id; the
           # very first release has no manifest yet, so fall back to creating
-          # it (see docs/release.md).
-          ./wingetcreate.exe update OlegEnot.v2rayB --urls $Installer_x64_url $Installer_ARM64_url --version ${{ steps.prep.outputs.VERSION }} --token $env:RELEASE_PAT --submit
+          # it.
+          ./wingetcreate.exe update AnotherEnot.v2rayB --urls $Installer_x64_url $Installer_ARM64_url --version ${{ steps.prep.outputs.VERSION }} --token $env:RELEASE_PAT --submit
           if ($LASTEXITCODE -ne 0) {
             ./wingetcreate.exe new $Installer_x64_url $Installer_ARM64_url `
-              --package-identifier OlegEnot.v2rayB `
-              --package-name "v2rayB" --publisher "OlegEnot" `
+              --package-identifier AnotherEnot.v2rayB `
+              --package-name "v2rayB" --publisher "AnotherEnot" `
               --package-url "https://github.com/${{ github.repository }}" `
               --license "GPL-3.0-only" `
               --description "A web client for its own Xray-based core with global transparent proxy." `
@@ -260,7 +260,7 @@ jobs:
           version=${{ steps.prep.outputs.VERSION }}
           x64_hash=$(sha256sum installers/installer_windows_inno_x64_${version}.exe | awk '{print $1}')
           arm64_hash=$(sha256sum installers/installer_windows_inno_arm64_${version}.exe | awk '{print $1}')
-          rm -rf bucket && git clone "https://x-access-token:${RELEASE_PAT}@github.com/OlegEnot/scoop-v2rayb.git" bucket
+          rm -rf bucket && git clone "https://x-access-token:${RELEASE_PAT}@github.com/AnotherEnot/scoop-v2rayb.git" bucket
           mkdir -p bucket/bucket
           python3 - <<EOF
           import json
