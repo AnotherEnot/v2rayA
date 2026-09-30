@@ -208,7 +208,7 @@ async function announceVersion() {
         label: "GitHub",
         onClick: () =>
           window.open(
-            "https://github.com/AnotherEnot/v2rayB/releases",
+            "https://github.com/AnotherEnot/v2rayA/releases",
             "_blank",
           ),
       },
